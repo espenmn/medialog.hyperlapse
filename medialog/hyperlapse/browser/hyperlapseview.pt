@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="medialog.hyperlapse">
+
+<head>
+    <tal:javascript metal:fill-slot="javascript_head_slot" tal:omit-tag="">
+
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3.exp" type="text/javascript"></script> 
+	<link type="text/javascript" src="three.min.js"
+  		tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/three.min.js"/>
+	<link type="text/javascript" src="GSVPano.js"
+    	tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/GSVPano.js"/>
+	<link type="text/javascript" src="Hyperlapse.js"
+    	tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/Hyperlapse.js" />
+
+	<script> 
+
+		function init() {
+
+			var hyperlapse = new Hyperlapse(document.getElementById('pano'), {
+				zoom: 1,
+				width: 800,
+				height: 400;
+				use_lookat: false,
+				elevation: 5,
+				distance_between_points: 1,
+				max_points: 1000,
+				millis: 400,
+			});
+
+			hyperlapse.onError = function(e) {
+				console.log(e);
+			};
+
+			hyperlapse.onRouteComplete = function(e) {
+				hyperlapse.load();
+			};
+
+			hyperlapse.onLoadComplete = function(e) {
+				hyperlapse.play();
+			};
+
+			// Google Maps API stuff here...
+			var directions_service = new google.maps.DirectionsService();
+
+			var route = {
+				request:{
+					origin: new google.maps.LatLng(60.3369016,5.3479528,17),
+					destination: new google.maps.LatLng(60.3406584,5.343591,17),
+					travelMode: google.maps.DirectionsTravelMode.DRIVING
+				}
+			};
+
+			directions_service.route(route.request, function(response, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					hyperlapse.generate( {route:response} );
+				} else {
+					console.log(status);
+				}
+			});
+
+		}
+
+		window.onload = init;
+		
+	</script> 
+	</tal:javascript>
+</head>    
+      
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+</tal:comment>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+
+    <p>dette er en test</p>
+    
+    	<div id="pano"></div>
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+
+
+
+ 
