@@ -3,9 +3,19 @@
        xmlns:form="http://namespaces.plone.org/supermodel/form">
     
     <schema>
-
-        <!-- field definitions -->
-        
+        <field name="millis" type="zope.schema.TextLine">
+            <description/>
+            <title>Millisecons between images</title>
+        </field>
+        <field name="fromlocation" type="zope.schema.TextLine">
+            <description/>
+            <title>From Location</title>
+        </field>
+        <field name="tolocation" type="zope.schema.TextLine">
+            <description/>
+            <title>To Location</title>
+        </field>
     </schema>
+
     
 </model>
