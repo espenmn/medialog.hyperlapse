@@ -36,7 +36,7 @@ class HyperlapseView(BrowserView):
                                         zoom: 1,
                                         width: 800,
                                         height: 400,
-                                        use_lookat: true,
+                                        use_lookat: false,
                                         elevation: 50,
                                         distance_between_points: 5,
                                         max_points: 100,
