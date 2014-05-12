@@ -60,8 +60,8 @@ class HyperlapseView(BrowserView):
                                         
                                         var route = {
                                             request:{
-                                                origin: new google.maps.LatLng(%(from)s),
-                                                destination: new google.maps.LatLng(%(to)s),
+                                                origin: new google.maps.LatLng(%(fromlocation)s),
+                                                destination: new google.maps.LatLng(%(tolocation)s),
                                                 travelMode: google.maps.DirectionsTravelMode.DRIVING
                                         }
                                         };
@@ -77,11 +77,10 @@ class HyperlapseView(BrowserView):
     }
     
             window.onload = init;
-</script>"""  {
-              'millis' : self.context.millis,
-              'from'   : self.context.fromlocation,
-              'to'     : self.context.tolocation,
-              }
+</script>""" % { 
+                 'millis' : self.context.millis, 
+                'fromlocation' : self.context.fromlocation, 
+                'tolocation' : self.context.tolocation, }
 
     @property
     def portal_catalog(self):
