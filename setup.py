@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '0.1'
 
 setup(name='medialog.hyperlapse',
       version=version,
@@ -16,9 +16,9 @@ setup(name='medialog.hyperlapse',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='',
-      author='',
-      author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      author='Espen Moe-Nilssen',
+      author_email='espen@medialog.no',
+      url='http://github.com/espenmn/medialog.hyperlapse',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['medialog'],
@@ -38,7 +38,4 @@ setup(name='medialog.hyperlapse',
       # The next two lines may be deleted after you no longer need
       # addcontent support from paster and before you distribute
       # your package.
-      setup_requires=["PasteScript"],
-      paster_plugins = ["ZopeSkel"],
-
       )

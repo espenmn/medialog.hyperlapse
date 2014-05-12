@@ -48,13 +48,14 @@ class HyperlapseView(BrowserView):
                                         };
                                         
                                         hyperlapse.onRouteComplete = function(e) {
-     
+                                            hyperlapse.load();
                                         };
                                         
                                         hyperlapse.onLoadComplete = function(e) {
                                             hyperlapse.play();
                                         };
                                         
+                                                                                
                                         // Google Maps API stuff here...
                                         var directions_service = new google.maps.DirectionsService();
                                         
