@@ -7,12 +7,12 @@
     <tal:javascript metal:fill-slot="javascript_head_slot" tal:omit-tag="">
 
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3.exp" type="text/javascript"></script> 
-	<link type="text/javascript" src="three.min.js"
-  		tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/three.min.js"/>
-	<link type="text/javascript" src="GSVPano.js"
-    	tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/GSVPano.js"/>
-	<link type="text/javascript" src="Hyperlapse.js"
-    	tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/Hyperlapse.js" />
+	<script type="text/javascript" src="three.min.js"
+  		tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/three.min.js"></script>
+	<script type="text/javascript" src="GSVPano.js"
+    	tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/GSVPano.js"></script>
+	<script type="text/javascript" src="Hyperlapse.js"
+    	tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++medialog.hyperlapse/Hyperlapse.js"> </script>
 
 	<script> 
 
@@ -21,11 +21,11 @@
 			var hyperlapse = new Hyperlapse(document.getElementById('pano'), {
 				zoom: 1,
 				width: 800,
-				height: 400;
+				height: 400,
 				use_lookat: false,
-				elevation: 5,
+				elevation: 50,
 				distance_between_points: 1,
-				max_points: 1000,
+				max_points: 100,
 				millis: 400,
 			});
 
@@ -79,7 +79,7 @@
   <metal:content-core define-macro="content-core">
 
 
-    <p>dette er en test</p>
+    <p>Finding directions… please wait!</p>
     
     	<div id="pano"></div>
 
