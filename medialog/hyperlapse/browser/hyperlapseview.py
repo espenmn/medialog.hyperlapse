@@ -53,9 +53,10 @@ class HyperlapseView(BrowserView):
                                         
                                         hyperlapse.onLoadComplete = function(e) {
                                             hyperlapse.play();
+                                            
                                         };
                                         
-                                                                                
+                                        
                                         // Google Maps API stuff here...
                                         var directions_service = new google.maps.DirectionsService();
                                         
@@ -82,6 +83,16 @@ class HyperlapseView(BrowserView):
                  'millis' : self.context.millis, 
                 'fromlocation' : self.context.fromlocation, 
                 'tolocation' : self.context.tolocation, }
+
+    @property
+    def construct_url(self):
+        """returns the urls that will embed the map
+          """
+
+        return """http://s3.tripgeo.com/dirmap/map.htm?from=%(fromlocation)s&to=%(tolocation)s"""  % {
+        'fromlocation' : self.context.fromlocation,
+        'tolocation'   : self.context.tolocation, 
+        }
 
     @property
     def portal_catalog(self):

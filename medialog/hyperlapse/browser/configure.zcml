@@ -13,4 +13,15 @@
       permission="zope.Public"
       />
 
+
+  <browser:page
+      for="*"
+      name="street_view"
+      class=".hyperlapseview.HyperlapseView"
+      template="streetview.pt"
+      allowed_interface=".hyperlapseview.IHyperlapseView"
+      permission="zope.Public"
+      />
+
+
 </configure>
