@@ -38,8 +38,8 @@ class HyperlapseView(BrowserView):
                                         height: 400,
                                         use_lookat: false,
                                         elevation: 50,
-                                        distance_between_points: 5,
-                                        max_points: 100,
+                                        distance_between_points: 1,
+                                        max_points: 300,
                                         millis: %(millis)s,
                                         });
                                         
@@ -48,7 +48,7 @@ class HyperlapseView(BrowserView):
                                         };
                                         
                                         hyperlapse.onRouteComplete = function(e) {
-                                            hyperlapse.load();
+     
                                         };
                                         
                                         hyperlapse.onLoadComplete = function(e) {
