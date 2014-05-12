@@ -19,7 +19,7 @@
 		function init() {
 
 			var hyperlapse = new Hyperlapse(document.getElementById('pano'), {
-				zoom: 1,
+				zoom: 2,
 				width: 800,
 				height: 400,
 				use_lookat: false,

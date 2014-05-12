@@ -24,6 +24,61 @@ class HyperlapseView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+    
+
+
+    @property
+    def javascript(self):
+    return """
+    function init() {
+        
+        var hyperlapse = new Hyperlapse(document.getElementById('pano'), {
+                                        zoom: 2,
+                                        width: 800,
+                                        height: 400,
+                                        use_lookat: false,
+                                        elevation: 50,
+                                        distance_between_points: 1,
+                                        max_points: 100,
+                                        millis: 400,
+                                        });
+                                        
+                                        hyperlapse.onError = function(e) {
+                                            console.log(e);
+                                        };
+                                        
+                                        hyperlapse.onRouteComplete = function(e) {
+                                            hyperlapse.load();
+                                        };
+                                        
+                                        hyperlapse.onLoadComplete = function(e) {
+                                            hyperlapse.play();
+                                        };
+                                        
+                                        // Google Maps API stuff here...
+                                        var directions_service = new google.maps.DirectionsService();
+                                        
+                                        var route = {
+                                            request:{
+                                                origin: new google.maps.LatLng(60.3369016,5.3479528,17),
+                                                destination: new google.maps.LatLng(60.3406584,5.343591,17),
+                                                travelMode: google.maps.DirectionsTravelMode.DRIVING
+                                        }
+                                        };
+                                        
+                                        directions_service.route(route.request, function(response, status) {
+                                                                 if (status == google.maps.DirectionsStatus.OK) {
+                                                                 hyperlapse.generate( {route:response} );
+                                                                 } else {
+                                                                 console.log(status);
+                                                                 }
+                                                                 });
+    
+    }
+    
+            window.onload = init;
+    
+    """
 
     @property
     def portal_catalog(self):
