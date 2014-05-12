@@ -24,23 +24,23 @@ class HyperlapseView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-    
-
 
     @property
     def javascript(self):
-    return """
-    function init() {
+        return u"""
+        <script type="text/javascript">
+            
+            function init() {
         
-        var hyperlapse = new Hyperlapse(document.getElementById('pano'), {
-                                        zoom: 2,
+            var hyperlapse = new Hyperlapse(document.getElementById('pano'), {
+                                        zoom: 1,
                                         width: 800,
                                         height: 400,
                                         use_lookat: false,
                                         elevation: 50,
                                         distance_between_points: 1,
                                         max_points: 100,
-                                        millis: 400,
+                                        millis: %(millis)s,
                                         });
                                         
                                         hyperlapse.onError = function(e) {
@@ -60,8 +60,8 @@ class HyperlapseView(BrowserView):
                                         
                                         var route = {
                                             request:{
-                                                origin: new google.maps.LatLng(60.3369016,5.3479528,17),
-                                                destination: new google.maps.LatLng(60.3406584,5.343591,17),
+                                                origin: new google.maps.LatLng(%(from)s),
+                                                destination: new google.maps.LatLng(%(to)s),
                                                 travelMode: google.maps.DirectionsTravelMode.DRIVING
                                         }
                                         };
@@ -77,8 +77,12 @@ class HyperlapseView(BrowserView):
     }
     
             window.onload = init;
-    
-    """
+</script>"""  {
+              'millis' : self.context.millis,
+              'from' : self.context.fromlocation,
+              'to' : self.context.tolocation,
+              
+              }
 
     @property
     def portal_catalog(self):
