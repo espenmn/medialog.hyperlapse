@@ -79,9 +79,8 @@ class HyperlapseView(BrowserView):
             window.onload = init;
 </script>"""  {
               'millis' : self.context.millis,
-              'from' : self.context.fromlocation,
-              'to' : self.context.tolocation,
-              
+              'from'   : self.context.fromlocation,
+              'to'     : self.context.tolocation,
               }
 
     @property
