@@ -40,7 +40,7 @@ class HyperlapseView(BrowserView):
                                         elevation: 50,
                                         distance_between_points: 1,
                                         max_points: 300,
-                                        millis: %(millis)s,
+                                        millis: 400,
                                         });
                                         
                                         hyperlapse.onError = function(e) {
@@ -80,7 +80,6 @@ class HyperlapseView(BrowserView):
     
             window.onload = init;
 </script>""" % { 
-                 'millis' : self.context.millis, 
                 'fromlocation' : self.context.fromlocation, 
                 'tolocation' : self.context.tolocation, }
 
@@ -94,13 +93,6 @@ class HyperlapseView(BrowserView):
         'tolocation'   : self.context.tolocation, 
         }
 
-    @property
-    def portal_catalog(self):
-        return getToolByName(self.context, 'portal_catalog')
-
-    @property
-    def portal(self):
-        return getToolByName(self.context, 'portal_url').getPortalObject()
 
     def test(self):
         """

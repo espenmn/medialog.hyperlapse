@@ -11,3 +11,5 @@ via template code like:
 It's more likely you'd add it the portal_javascript registry with an id of ++resource++dexterity.test/test.js.
 
 Static folder resources are public.
+
+Some files in this folder is for the future of this product, maybe

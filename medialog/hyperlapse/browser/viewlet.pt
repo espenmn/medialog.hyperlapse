@@ -1,0 +1,3 @@
+<div>
+   <a class="button external-link" target="_blank" href="" tal:attributes="href view/construct_url">Link</a>
+</div>

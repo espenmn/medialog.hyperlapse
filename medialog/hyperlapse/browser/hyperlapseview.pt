@@ -19,7 +19,7 @@
     <metal:main fill-slot="content-core">
       <metal:content-core define-macro="content-core">
  
-        <p>Finding directions… This might take some time... Please wait a little!</p>
+        <p>Finding directions… This might take some time... Please wait !</p>
         <div id="pano"></div>
 
       </metal:content-core>

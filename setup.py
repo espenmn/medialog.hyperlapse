@@ -28,6 +28,9 @@ setup(name='medialog.hyperlapse',
           'setuptools',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
+          'plone.behavior',
+          'plone.directives.form',
+          'collective.z3cform.mapwidget',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

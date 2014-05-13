@@ -6,9 +6,13 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="medialog.hyperlapse">
-
+    
+    
   <!-- Include configuration for dependencies listed in setup.py -->
   <includeDependencies package="." />
+  
+  <!-- Include behavior -->
+  <include file="behaviors.zcml" />
 
   <!-- Register a resource directory from which we can deploy static
    resource files. -->
@@ -31,11 +35,5 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <include package=".browser" />
-  
-    <class class=".hyperlapse.Hyperlapse">
-        <implements interface=".hyperlapse.IHyperlapse" />
-    </class>
-
-
 
 </configure>
