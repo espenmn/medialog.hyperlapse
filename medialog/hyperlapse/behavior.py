@@ -5,8 +5,7 @@ from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
 from zope.i18nmessageid import MessageFactory
 
-from collective.z3cform.mapwidget.widget import MapFieldWidget
-from .browser.widget import FormPlaceWidget
+from .browser.widget import PlaceFieldWidget
 
 _ = MessageFactory('medialog.hyperlapse')
 
@@ -27,8 +26,7 @@ class IStreetview(form.Schema):
     )
 
     form.widget(
-            fromlocation=MapFieldWidget,
-            tolocation=MapFieldWidget,
+            fromlocation=PlaceFieldWidget,
     )
 
 alsoProvides(IStreetview, IFormFieldProvider)

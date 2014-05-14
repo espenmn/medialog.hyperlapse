@@ -14,7 +14,7 @@ from z3c.form.widget import FieldWidget
 from z3c.form.interfaces import DISPLAY_MODE
 
 
-class PlaceWidget(TextAreaWidget):
+class PlaceFieldWidget(TextAreaWidget):
     js = None
     
     @property
@@ -27,19 +27,15 @@ class PlaceWidget(TextAreaWidget):
 
 
 
-class IFormPlaceWidget(ITextAreaWidget):
+class IPlaceFieldWidget(ITextAreaWidget):
     """Interface for z3c.form place widget"""
     pass
 
 
-class FormPlaceWidget(TextAreaWidget):
-    implementsOnly(IFormPlaceWidget)
-    
-    pass
 
 
 @adapter(IField, IFormLayer)
 @implementer(IFieldWidget)
 def PlaceFieldWidget(field, request):
     """IFieldWidget factory for FormPlaceWidget."""
-    return FieldWidget(field, FormPlaceWidget(request))
+    return FieldWidget(field, PlaceFiledWidget(request))
