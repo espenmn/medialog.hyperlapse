@@ -5,12 +5,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
 from zope.i18nmessageid import MessageFactory
 
-<<<<<<< HEAD
 from collective.z3cform.colorpicker.colorpicker.ColorpickerWidget
 from medialog.hyperlapse.widgets.widget import FootballWidget
-=======
-from .browser.widget import PlaceFieldWidget
->>>>>>> 448ece51ad394295b3804634ac7ef64d5fbd1d21
 
 _ = MessageFactory('medialog.hyperlapse')
 
@@ -31,12 +27,9 @@ class IStreetview(form.Schema):
     )
 
     form.widget(
-<<<<<<< HEAD
-            fromlocation=ColorpickerWidget
-=======
-            fromlocation=PlaceFieldWidget,
->>>>>>> 448ece51ad394295b3804634ac7ef64d5fbd1d21
-    )
+                fromlocation=ColorpickerWidget
+
+                )
 
 alsoProvides(IStreetview, IFormFieldProvider)
 
