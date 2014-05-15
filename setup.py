@@ -30,15 +30,10 @@ setup(name='medialog.hyperlapse',
           'plone.namedfile [blobs]',
           'plone.behavior',
           'plone.directives.form',
-          'collective.z3cform.mapwidget',
-          # -*- Extra requirements: -*-
       ],
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      # The next two lines may be deleted after you no longer need
-      # addcontent support from paster and before you distribute
-      # your package.
       )
