@@ -11,6 +11,10 @@
   <!-- Include configuration for dependencies listed in setup.py -->
   <includeDependencies package="." />
   
+
+  <include package=".widgets" />
+  <include package=".browser" />
+    
   <!-- Include behavior -->
   <include file="behaviors.zcml" />
 
@@ -32,8 +36,6 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <!-- -*- extra stuff goes here -*- -->
-
-  <include package=".browser" />
+ 
 
 </configure>

@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+	i18n_domain="medialog.hyperlapse">
+	
+  <class class=".widget.FootballWidget">
+    <require
+        permission="zope.Public"
+        interface="medialog.hyperlapse.widgets.widget.IFootballWidget"
+        />
+  </class>
+
+  <!-- this widget is not configured for any field by default -->
+  <z3c:widgetTemplate
+      mode="display"
+      widget="medialog.hyperlapse.widgets.widget.IFootballWidget"
+      layer="z3c.form.interfaces.IFormLayer"
+      template="footballfield_display.pt" />
+
+  <z3c:widgetTemplate
+      mode="input"
+      widget="medialog.hyperlapse.widgets.widget.IFootballWidget"
+      layer="z3c.form.interfaces.IFormLayer"
+      template="footballfield_input.pt" />
+
+</configure>

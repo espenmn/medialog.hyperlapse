@@ -30,20 +30,4 @@
     permission="zope2.View"
     template="viewlet.pt" />
         
-
-  <class class=".widget.FormPlaceWidget">
-    <require
-        permission="zope.Public"
-        interface=".widget.IFormPlaceWidget"
-      />
-  </class>
-
-  <z3c:widgetTemplate
-    mode="input"
-    widget=".widget.IFormPlaceWidget"
-    layer="z3c.form.interfaces.IFormLayer"
-    template="place_input.pt"
-    />
- 
-
 </configure>
