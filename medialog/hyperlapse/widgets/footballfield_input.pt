@@ -1,8 +1,11 @@
-<input type="text" id="color" name="" class="" title="" lang="" disabled=""
-       readonly="" alt="" tabindex="" accesskey="" size="" maxlength=""
+
+<fieldset>
+	 <input   type="text" placeholder="Type in an address" size=42  name="" class="football">
+	 <input   type="text"  name=""  title="" lang="" disabled=""
+       readonly="" alt="" tabindex="" accesskey="" maxlength=""
        tal:attributes="id string:${view/id};
                        name view/name;
-                       class string:${view/klass} color;
+                       class string:${view/klass} place;
                        style view/style;
                        title view/title;
                        lang view/lang;
@@ -30,16 +33,64 @@
                        maxlength view/maxlength" />
 
 
-<a href="" onClick="return false" tal:attributes="id string:${view/id}-show" i18n:translate="" i18n:domain="collective.z3cform.colorpicker">Choose color</a>
+	 <input id="find" type="button" value="find on map" />
+    
+<label>Latitude</label>
+<input type="text" value="" name="lat">
+<label>Longitude</label>
+<input type="text" value="" name="lng">
+<label>Formatted Address</label>
+<input type="text" value="" name="formatted_address">
+ 
+<div class="map_canvas"  ></div>
 
-<div tal:attributes="id string:${view/id}-popup" class="color-popup">
-  <div class="color-popup-header"><a tal:attributes="id string:${view/id}-close;"
-                                     title="Close popup"
-                                     i18n:domain="collective.z3cform.colorpicker"
-                                     i18n:attributes="title" >(x)</a></div>
-  <div id="colorpicker" tal:attributes="id string:${view/id}-colorpicker"></div>
-</div>
+</fieldset>
 
-<script type="text/javascript"
-        tal:content="view/getJS">
-</script>
+ <link rel="stylesheet" type="text/css" media="screen" href="http://ubilabs.github.io/geocomplete/stylesheets/stylesheet.css">
+    
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script src="http://ubilabs.github.io/geocomplete/jquery.geocomplete.js"></script>
+        
+    <script>
+      $(document).ready(function(){
+        
+        var options = {
+          map: ".map_canvas",
+          formatted_address: "geocomplete",
+          details: "form ",
+          markerOptions: {
+            draggable: true
+          }
+        };
+        
+        $(".football").geocomplete(options)
+          .bind("geocode:result", function(event, result){
+            $.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function(event, status){
+            $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function(event, results){
+            $.log("Multiple: " + results.length + " results found");
+          });
+        
+        $(".footballfield").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());
+          $("#reset").show();
+        });
+        
+        $("#find").click(function(){
+          $(".footballfield").trigger("geocode");
+        });
+        
+        $("#examples a").click(function(){
+          $(".footballfield").val($(this).text()).trigger("geocode");
+          return false;
+        });
+        
+      });
+    </script>
+
+        
+  

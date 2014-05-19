@@ -14,22 +14,16 @@ class IFootballWidget(interfaces.IWidget):
 class FootballWidget(text.TextWidget):
     maxlength = 255
     size = 30
-    readonly = True
     
     zope.interface.implementsOnly(IFootballWidget)
     
     def getJS(self):
         return """jQuery(document).ready(function() {
-            jQuery("#%s-close").click(function(){
-            jQuery("#%s-popup").hide(400);
-            });
             
-            jQuery("#%s-show").click(function(){
-            jQuery("#%s-popup").toggle(400);
-            });
-            jQuery('#%s-colorpicker').farbtastic('#%s');
-            });""".replace('%s', self.id)
-
+            // for ie9 doesn't support debug console >>>
+                         
+            }(jQuery));
+            """
 
 def FootballFieldWidget(field, request):
     """IFieldWidget factory for FootballWidget."""
