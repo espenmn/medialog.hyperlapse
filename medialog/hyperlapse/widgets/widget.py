@@ -17,13 +17,49 @@ class FootballWidget(text.TextWidget):
     
     zope.interface.implementsOnly(IFootballWidget)
     
-    def getJS(self):
+    import pdb; pdb.set_trace()
+    print field
+    
+    def javascript(self):
         return """jQuery(document).ready(function() {
             
-            // for ie9 doesn't support debug console >>>
-                         
-            }(jQuery));
-            """
+            var options = {
+          map: ".map_canvas",
+          formatted_address: "geocomplete",
+          details: "form ",
+          markerOptions: {
+            draggable: true
+          }
+        };
+        
+        $(".football").geocomplete(options)
+          .bind("geocode:result", function(event, result){
+            $.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function(event, status){
+            $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function(event, results){
+            $.log("Multiple: " + results.length + " results found");
+          });
+        
+        $(".footballfield").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());
+          $("#reset").show();
+        });
+        
+        $("#find").click(function(){
+          $(".footballfield").trigger("geocode");
+        });
+        
+        $("#examples a").click(function(){
+          $(".footballfield").val($(this).text()).trigger("geocode");
+          return false;
+        });
+        
+      });
+    """
 
 def FootballFieldWidget(field, request):
     """IFieldWidget factory for FootballWidget."""
