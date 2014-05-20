@@ -23,16 +23,16 @@ class FootballWidget(text.TextWidget):
     def javascript(self):
         return """jQuery(document).ready(function() {
             
-            var options = {
-          map: ".map_canvas",
-          formatted_address: "geocomplete",
-          details: "form ",
-          markerOptions: {
+        	var options = {
+			map: ".map_canvas",
+          	formatted_address: "geocomplete",
+         	details: "form ",
+          	markerOptions: {
             draggable: true
           }
         };
         
-        $(".football").geocomplete(options)
+        $("#%(fieldname)s").geocomplete(options)
           .bind("geocode:result", function(event, result){
             $.log("Result: " + result.formatted_address);
           })
@@ -43,23 +43,23 @@ class FootballWidget(text.TextWidget):
             $.log("Multiple: " + results.length + " results found");
           });
         
-        $(".footballfield").bind("geocode:dragged", function(event, latLng){
+        $("#%(fieldname)s").bind("geocode:dragged", function(event, latLng){
           $("input[name=lat]").val(latLng.lat());
           $("input[name=lng]").val(latLng.lng());
           $("#reset").show();
         });
         
         $("#find").click(function(){
-          $(".footballfield").trigger("geocode");
+          $("#%(fieldname)s").trigger("geocode");
         });
         
         $("#examples a").click(function(){
-          $(".footballfield").val($(this).text()).trigger("geocode");
+          $("#%(fieldname)s").val($(this).text()).trigger("geocode");
           return false;
         });
         
       });
-    """
+    """ % { 'fieldname' = self.field.Id, }
 
 def FootballFieldWidget(field, request):
     """IFieldWidget factory for FootballWidget."""
