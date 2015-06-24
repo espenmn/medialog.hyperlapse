@@ -11,3 +11,15 @@ PasteScript-1.7.5-py2.7.egg
 
 Paste*
 *.pyc
+
+*.pyc
+
+medialog/hyperlapse/__init__.pyc
+
+*.pyc
+
+medialog/hyperlapse/widgets/widget.pyc
+
+*.pyc
+
+*.pyc
