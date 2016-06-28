@@ -23,3 +23,7 @@ medialog/hyperlapse/widgets/widget.pyc
 *.pyc
 
 *.pyc
+
+.DS_Store
+
+medialog/.DS_Store
